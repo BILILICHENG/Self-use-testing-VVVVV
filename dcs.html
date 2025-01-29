@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="multilingual">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAEKO Team & Hongshu Esports Notice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .warning {
+            border-left: 5px solid #ff4444;
+            background: #ffeaea;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .lang-tabs {
+            margin-bottom: 20px;
+        }
+        .lang-tab {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            background: #f0f0f0;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .lang-tab.active {
+            background: #fff;
+            border-bottom: 1px solid #fff;
+        }
+        .lang-content {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        .lang-content.active {
+            display: block;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-tabs">
+        <div class="lang-tab active" onclick="switchLang('en')">English</div>
+        <div class="lang-tab" onclick="switchLang('ja')">日本語</div>
+        <div class="lang-tab" onclick="switchLang('zh')">中文</div>
+    </div>
+
+    <!-- English Content -->
+    <div id="en" class="lang-content active">
+        <div class="warning">
+            <h2>❗ Important Notice Before Joining</h2>
+            <p>Our teams (SAEKO Team & Hongshu Esports) strictly prohibit casual users from joining our Discord server. Please ensure you genuinely appreciate our projects before joining. We do NOT welcome those who join out of mere curiosity, especially those who leave shortly after joining. Such behavior may result in permanent blacklisting.</p>
+        </div>
+
+        <h2>📌 Essential Requirements</h2>
+        <ul>
+            <li>1. Anonymous access is prohibited (except for members joined before Jan 1, 2025)</li>
+            <li>2. Mandatory VRChat account binding using /bind command after joining</li>
+            <li>2-1. Bot is usually offline - @mods if unavailable for manual binding</li>
+            <li>3. Recommended to mute server due to frequent test notifications</li>
+            <li>4. Direct invitations are prohibited - friends must follow official procedures</li>
+            <li>5. Always follow latest guidelines (Current version: 2025-01-29)</li>
+        </ul>
+
+        <h2>🔗 How to Join</h2>
+        <p>Invite links are temporarily hidden. Contact us via Twitter to request access:<br>
+            <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
+            <a href="https://20070615.xyz/twitter" target="_blank">Alternative Link</a>
+        </p>
+    </div>
+
+    <!-- Japanese Content -->
+    <div id="ja" class="lang-content">
+        <div class="warning">
+            <h2>❗ 参加前の重要なお知らせ</h2>
+            <p>当チーム（さえこチーム＆洪树电竞科技）は、ディスコードサーバーへの安易な参加を固く禁じます。参加の際は、当方のプロジェクトを真に理解・評価いただける方のみに限定させていただきます。好奇心のみでの参加、特に参加後すぐに退出する行為は厳禁であり、ブラックリスト登録の対象となる可能性があります。</p>
+        </div>
+
+        <h2>📌 必須要件</h2>
+        <ul>
+            <li>1. 匿名での参加は禁止（2025年1月1日以前参加者を除く）</li>
+            <li>2. 参加後はVRChatアカウントの/bindコマンドによる紐付け必須</li>
+            <li>2-1. Botは通常オフライン状態のため、利用不可時は@modsで手動申請</li>
+            <li>3. テスト通知頻発のためサーバーをミュート推奨</li>
+            <li>4. 友人への直接招待禁止 - 公式手順に従ってください</li>
+            <li>5. 最新ガイドラインの順守必須（現行版: 2025-01-29）</li>
+        </ul>
+
+        <h2>🔗 参加方法</h2>
+        <p>招待リンクは非公開です。参加希望の方はTwitter経由でお問い合わせください:<br>
+            <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
+            <a href="https://20070615.xyz/twitter" target="_blank">代替リンク</a>
+        </p>
+    </div>
+
+    <!-- Chinese Content -->
+    <div id="zh" class="lang-content">
+        <div class="warning">
+            <h2>❗ 加入前重要通知</h2>
+            <p>我们团队（さえこ团队 & 洪树电竞科技）严禁随意加入我们的Discord服务器。请确保您真正认可我们的项目后再申请加入。我们不欢迎因单纯好奇而加入的用户，特别是加入后短时间内退出的行为，此类行为可能导致永久黑名单记录。</p>
+        </div>
+
+        <h2>📌 必要要求</h2>
+        <ul>
+            <li>1. 禁止匿名访问（2025年1月1日前加入成员除外）</li>
+            <li>2. 加入后必须使用/bind命令绑定VRChat账号</li>
+            <li>2-1. Bot通常处于离线状态 - 不可用时请@mods申请人工绑定</li>
+            <li>3. 建议将服务器设为静音以避免测试通知</li>
+            <li>4. 禁止直接邀请朋友 - 需通过官方流程加入</li>
+            <li>5. 请始终遵守最新准则（当前版本：2025-01-29）</li>
+        </ul>
+
+        <h2>🔗 加入方式</h2>
+        <p>邀请链接暂不公开。请通过Twitter联系我们申请访问权限：<br>
+            <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
+            <a href="https://20070615.xyz/twitter" target="_blank">备用链接</a>
+        </p>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            // 切换标签样式
+            document.querySelectorAll('.lang-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[onclick="switchLang('${lang}')"]`).classList.add('active');
+
+            // 切换内容显示
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
