@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="multilingual">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,14 +34,11 @@
         }
         .lang-content {
             display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
             border: 1px solid #ccc;
             padding: 20px;
         }
         .lang-content.active {
             display: block;
-            opacity: 1;
         }
         a {
             color: #0066cc;
@@ -61,16 +58,15 @@
         li {
             margin-bottom: 10px;
         }
-        button {
+        button.copy-btn {
+            color: #0066cc;
             background: none;
             border: none;
-            color: inherit;
-            font: inherit;
-            text-decoration: underline;
             cursor: pointer;
+            text-decoration: underline;
         }
-        button:focus {
-            outline: none;
+        button.copy-btn:hover {
+            color: #0047b3;
         }
     </style>
 </head>
@@ -81,7 +77,6 @@
         <div class="lang-tab" onclick="switchLang('zh')">中文</div>
     </div>
 
-    <!-- English Content -->
     <div id="en" class="lang-content active">
         <div class="warning">
             <h2>❗ Important Notice Before Joining</h2>
@@ -102,11 +97,10 @@
         <p>Invite links are temporarily hidden. Contact us via Twitter to request access:<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">Alternative Link</a><br>
-            Alternatively, you can add <button onclick="copyToClipboard()">LI_CHENG#5269</button> on Discord.
+            Alternatively, you can add <button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button> on Discord.
         </p>
     </div>
 
-    <!-- Japanese Content -->
     <div id="ja" class="lang-content">
         <div class="warning">
             <h2>❗ 参加前の重要なお知らせ</h2>
@@ -127,11 +121,10 @@
         <p>招待リンクは非公開です。参加希望の方はTwitter経由でお問い合わせください:<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">代替リンク</a><br>
-            または、Discordで<button onclick="copyToClipboard()">LI_CHENG#5269</button>を追加できます。
+            または、Discordで<button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button>を追加できます。
         </p>
     </div>
 
-    <!-- Chinese Content -->
     <div id="zh" class="lang-content">
         <div class="warning">
             <h2>❗ 加入前重要通知</h2>
@@ -152,7 +145,7 @@
         <p>邀请链接暂不公开。请通过Twitter联系我们申请访问权限：<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">备用链接</a><br>
-            或者，您可以在 Discord 上添加 <button onclick="copyToClipboard()">LI_CHENG#5269</button>。
+            或者，您可以在 Discord 上添加 <button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button>。
         </p>
     </div>
 
@@ -160,35 +153,19 @@
         function copyToClipboard() {
             const textToCopy = "LI_CHENG#5269";
             navigator.clipboard.writeText(textToCopy).then(function() {
-                const tooltip = document.createElement("span");
-                tooltip.textContent = "Copied!";
-                tooltip.style.position = "absolute";
-                tooltip.style.top = "20px";
-                tooltip.style.right = "20px";
-                tooltip.style.backgroundColor = "green";
-                tooltip.style.color = "#fff";
-                tooltip.style.padding = "5px";
-                tooltip.style.borderRadius = "5px";
-                document.body.appendChild(tooltip);
-
-                setTimeout(() => {
-                    tooltip.remove();
-                }, 1500);
+                alert("Discord ID copied to clipboard!");
             }).catch(function(err) {
                 console.error("Error copying text: ", err);
             });
         }
 
         function switchLang(lang) {
-            document.querySelectorAll('.lang-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelector(`[onclick="switchLang('${lang}')"]`).classList.add('active');
-
-            document.querySelectorAll('.lang-content').forEach(content => {
-                content.classList.remove('active');
-            });
+            const contents = document.querySelectorAll('.lang-content');
+            contents.forEach(content => content.classList.remove('active'));
+            const tabs = document.querySelectorAll('.lang-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
             document.getElementById(lang).classList.add('active');
+            document.querySelector(`.lang-tab[onclick="switchLang('${lang}')"]`).classList.add('active');
         }
     </script>
 </body>
