@@ -64,9 +64,25 @@
             border: none;
             cursor: pointer;
             text-decoration: underline;
+            padding: 0;
+            font: inherit;
         }
         button.copy-btn:hover {
             color: #0047b3;
+        }
+        .copy-notification {
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .copy-notification.show {
+            opacity: 1;
         }
     </style>
 </head>
@@ -97,7 +113,7 @@
         <p>Invite links are temporarily hidden. Contact us via Twitter to request access:<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">Alternative Link</a><br>
-            Alternatively, you can add <button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button> on Discord.
+            Alternatively, you can add <button class="copy-btn" onclick="copyToClipboard(this)">LI_CHENG#5269</button> on Discord.
         </p>
     </div>
 
@@ -121,7 +137,7 @@
         <p>招待リンクは非公開です。参加希望の方はTwitter経由でお問い合わせください:<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">代替リンク</a><br>
-            または、Discordで<button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button>を追加できます。
+            または、Discordで<button class="copy-btn" onclick="copyToClipboard(this)">LI_CHENG#5269</button>を追加できます。
         </p>
     </div>
 
@@ -145,15 +161,26 @@
         <p>邀请链接暂不公开。请通过Twitter联系我们申请访问权限：<br>
             <a href="https://20070615.xyz/x" target="_blank">X (Twitter)</a> | 
             <a href="https://20070615.xyz/twitter" target="_blank">备用链接</a><br>
-            或者，您可以在 Discord 上添加 <button class="copy-btn" onclick="copyToClipboard()">LI_CHENG#5269</button>。
+            或者，您可以在 Discord 上添加 <button class="copy-btn" onclick="copyToClipboard(this)">LI_CHENG#5269</button>。
         </p>
     </div>
 
     <script>
-        function copyToClipboard() {
+        function copyToClipboard(button) {
             const textToCopy = "LI_CHENG#5269";
             navigator.clipboard.writeText(textToCopy).then(function() {
-                alert("Discord ID copied to clipboard!");
+                let notification = button.nextElementSibling;
+                if (!notification || !notification.classList.contains('copy-notification')) {
+                    notification = document.createElement('span');
+                    notification.className = 'copy-notification';
+                    notification.textContent = 'Copied!';
+                    button.parentNode.insertBefore(notification, button.nextSibling);
+                }
+                
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 1500);
             }).catch(function(err) {
                 console.error("Error copying text: ", err);
             });
