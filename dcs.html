@@ -66,23 +66,39 @@
             text-decoration: underline;
             padding: 0;
             font: inherit;
+            position: relative;
         }
         button.copy-btn:hover {
             color: #0047b3;
         }
         .copy-notification {
             position: absolute;
-            background-color: #333;
+            background-color: #4CAF50;
             color: white;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 15px;
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
+            white-space: nowrap;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .copy-notification.show {
             opacity: 1;
+        }
+        .copy-notification:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #4CAF50 transparent transparent transparent;
         }
     </style>
 </head>
@@ -166,17 +182,30 @@
     </div>
 
     <script>
+        function getCopyMessage(lang) {
+            const messages = {
+                'en': 'Copied!',
+                'ja': 'コピーしました！',
+                'zh': '已复制！'
+            };
+            return messages[lang] || messages['en'];
+        }
+
         function copyToClipboard(button) {
             const textToCopy = "LI_CHENG#5269";
+            const currentLang = document.querySelector('.lang-tab.active').getAttribute('onclick').match(/'(\w+)'/)[1];
+            const copyMessage = getCopyMessage(currentLang);
+            
             navigator.clipboard.writeText(textToCopy).then(function() {
-                let notification = button.nextElementSibling;
-                if (!notification || !notification.classList.contains('copy-notification')) {
+                // 创建或显示通知元素
+                let notification = button.querySelector('.copy-notification');
+                if (!notification) {
                     notification = document.createElement('span');
                     notification.className = 'copy-notification';
-                    notification.textContent = 'Copied!';
-                    button.parentNode.insertBefore(notification, button.nextSibling);
+                    button.appendChild(notification);
                 }
                 
+                notification.textContent = copyMessage;
                 notification.classList.add('show');
                 setTimeout(() => {
                     notification.classList.remove('show');
