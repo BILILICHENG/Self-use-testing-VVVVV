@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status | 项目状态</title>
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #00B894;
+            --accent: #FD79A8;
+            --dark: #2D3436;
+            --light: #F5F6FA;
+            --warning: #E17055;
+            --info: #0984E3;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .language-switcher {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .lang-flag {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card.warning {
+            border-left-color: var(--warning);
+        }
+        
+        .card.info {
+            border-left-color: var(--info);
+        }
+        
+        .card.success {
+            border-left-color: var(--secondary);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title .icon {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        .highlight {
+            background-color: rgba(108, 92, 231, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.3rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5649D6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+        
+        .btn-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: rgba(45, 52, 54, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem;
+            }
+            
+            .card {
+                padding: 1.2rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Project Status</h1>
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="zh-cn">
+                <span class="lang-flag">🇨🇳</span> 简体中文
+            </button>
+            <button class="lang-btn" data-lang="zh-tw">
+                <span class="lang-flag">🇹🇼</span> 繁體中文
+            </button>
+            <button class="lang-btn" data-lang="ja">
+                <span class="lang-flag">🇯🇵</span> 日本語
+            </button>
+            <button class="lang-btn" data-lang="ko">
+                <span class="lang-flag">🇰🇷</span> 한국어
+            </button>
+            <button class="lang-btn" data-lang="en">
+                <span class="lang-flag">🇬🇧</span> English
+            </button>
+            <button class="lang-btn" data-lang="ru">
+                <span class="lang-flag">🇷🇺</span> Русский
+            </button>
+        </div>
+    </div>
+
+    <div id="zh-cn" class="content-section active">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> 致所有玩家</h2>
+            <p>我们郑重声明，本项目<span class="highlight">并未放弃</span>。当前版本已到达技术极限，我们已停止维护，全力开发<span class="highlight">全新的框架</span>。</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Discord服务器状态</h2>
+            <p>我们的Discord服务器<span class="highlight">暂时关闭</span>了新成员加入通道，请<span class="highlight">不要尝试</span>通过邀请链接加入。</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> 开发者招募</h2>
+            <p>我们正在招募<span class="highlight">日语、英语和俄语</span>的本地化协助者。欢迎有意向合作的开发者直接联系我们。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> 成绩上传</h2>
+            <p>成绩上传功能保持完整可用，请使用我们专门的<span class="highlight">DanceVrushSaveData工具</span>进行提交。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> 联系方式</h2>
+            <p>开发相关咨询请直接联系:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="zh-tw" class="content-section">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> 致所有玩家</h2>
+            <p>我們鄭重聲明，本項目<span class="highlight">並未放棄</span>。當前版本已到達技術極限，我們已停止維護，全力開發<span class="highlight">全新的框架</span>。</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Discord伺服器狀態</h2>
+            <p>我們的Discord伺服器<span class="highlight">暫時關閉</span>了新成員加入通道，請<span class="highlight">不要嘗試</span>通過邀請鏈接加入。</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> 開發者招募</h2>
+            <p>我們正在招募<span class="highlight">日語、英語和俄語</span>的本地化協助者。歡迎有意向合作的開發者直接聯繫我們。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> 成績上傳</h2>
+            <p>成績上傳功能保持完整可用，請使用我們專門的<span class="highlight">DanceVrushSaveData工具</span>進行提交。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> 聯繫方式</h2>
+            <p>開發相關諮詢請直接聯繫:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="ja" class="content-section">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> 全てのプレイヤーへ</h2>
+            <p>本プロジェクトは<span class="highlight">中止されておりません</span>。現在のバージョンは技術的限界に達したため、メンテナンスを停止し、<span class="highlight">全新フレームワーク</span>の開発に集中しています。</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Discordサーバー状況</h2>
+            <p>Discordサーバーは新規メンバーの加入を<span class="highlight">一時停止</span>しています。招待リンクで参加しようと<span class="highlight">しないでください</span>。</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> 開発者募集</h2>
+            <p><span class="highlight">日本語、英語、ロシア語</span>のローカライゼーション協力者を募集しています。協力に興味のある開発者は直接ご連絡ください。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> スコアアップロード</h2>
+            <p>スコアアップロード機能は完全に機能しています。専用の<span class="highlight">DanceVrushSaveDataツール</span>をご利用ください。</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> 連絡先</h2>
+            <p>開発に関するお問い合わせは直接:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="ko" class="content-section">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> 모든 플레이어 분들께</h2>
+            <p>본 프로젝트는 <span class="highlight">중단되지 않았습니다</span>. 현재 버전은 기술적 한계에 도달하여 유지보수를 중단하고 <span class="highlight">완전히 새로운 프레임워크</span> 개발에 집중하고 있습니다.</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Discord 서버 상태</h2>
+            <p>저희 Discord 서버는 새 멤버 초대를 <span class="highlight">일시 중단</span>하였습니다. 초대 링크로 참여하려고 <span class="highlight">하지 마십시오</span>.</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> 개발자 모집</h2>
+            <p><span class="highlight">일본어, 영어, 러시아어</span> 현지화 협력자를 모집하고 있습니다. 협력에 관심 있는 개발자는 직접 연락주시기 바랍니다.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> 점수 업로드</h2>
+            <p>점수 업로드 기능은 정상 작동 중입니다. 전용 <span class="highlight">DanceVrushSaveData 도구</span>를 사용해 주십시오.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> 연락처</h2>
+            <p>개발 관련 문의는 직접 연락주세요:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="en" class="content-section">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> For All Players</h2>
+            <p>We want to assure you that this project is <span class="highlight">not abandoned</span>. The current version has reached its technical limits and we've stopped maintenance to focus on building a <span class="highlight">completely new framework</span>.</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Discord Server Status</h2>
+            <p>Our Discord server is <span class="highlight">temporarily closed</span> to new members. Please <span class="highlight">do not attempt</span> to join through invites.</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> For Developers</h2>
+            <p>We're looking for localization assistance in <span class="highlight">Japanese, English, and Russian</span>. Developers interested in collaboration are welcome to contact us directly.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> Score Upload</h2>
+            <p>The score upload feature remains fully functional. Please use our dedicated <span class="highlight">DanceVrushSaveData tool</span> for submissions.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> Contact Information</h2>
+            <p>For development inquiries, please contact directly:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="ru" class="content-section">
+        <div class="card info">
+            <h2 class="card-title"><span class="icon">🎮</span> Для всех игроков</h2>
+            <p>Хотим заверить вас, что проект <span class="highlight">не заброшен</span>. Текущая версия достигла своих технических пределов, и мы прекратили её поддержку, чтобы сосредоточиться на создании <span class="highlight">полностью новой структуры</span>.</p>
+        </div>
+        
+        <div class="card warning">
+            <h2 class="card-title"><span class="icon">⚠️</span> Статус Discord сервера</h2>
+            <p>Наш Discord сервер <span class="highlight">временно закрыт</span> для новых участников. Пожалуйста, <span class="highlight">не пытайтесь</span> присоединиться через приглашения.</p>
+        </div>
+        
+        <div class="card success">
+            <h2 class="card-title"><span class="icon">💻</span> Для разработчиков</h2>
+            <p>Мы ищем помощников для локализации на <span class="highlight">японский, английский и русский</span> языки. Разработчики, заинтересованные в сотрудничестве, могут связаться с нами напрямую.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📊</span> Загрузка результатов</h2>
+            <p>Функция загрузки результатов полностью работоспособна. Пожалуйста, используйте нашу специальную <span class="highlight">программу DanceVrushSaveData</span> для отправки.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📨</span> Контактная информация</h2>
+            <p>По вопросам разработки обращайтесь напрямую:</p>
+            <div class="contact-buttons">
+                <a href="https://discordapp.com/users/LI_CHENG#5269" class="btn btn-primary">
+                    <span class="btn-icon">💬</span> Discord: LI_CHENG#5269
+                </a>
+                <a href="https://20070615.xyz/twitter" class="btn btn-outline">
+                    <span class="btn-icon">🐦</span> Twitter @licheng520
+                </a>
+                <a href="mailto:saeko@20070615.xyz" class="btn btn-outline">
+                    <span class="btn-icon">✉️</span> saeko@20070615.xyz
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Thank you for your support! | 感谢您的支持! | ご支援ありがとうございます! | 감사합니다! | Спасибо за вашу поддержку!</p>
+    </div>
+
+    <script>
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                const lang = this.getAttribute('data-lang');
+                document.getElementById(lang).classList.add('active');
+            });
+        });
+        
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            const supportedLangs = ['zh-cn', 'zh-tw', 'ja', 'ko', 'en', 'ru'];
+            
+            if (userLang.startsWith('zh-CN') || userLang.startsWith('zh-SG')) {
+                return 'zh-cn';
+            }
+            else if (userLang.startsWith('zh-TW') || userLang.startsWith('zh-HK') || userLang.startsWith('zh-MO')) {
+                return 'zh-tw';
+            }
+            else if (userLang.startsWith('ja')) {
+                return 'ja';
+            }
+            else if (userLang.startsWith('ko')) {
+                return 'ko';
+            }
+            else if (userLang.startsWith('ru')) {
+                return 'ru';
+            }
+            else {
+                return 'en';
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const lang = detectLanguage();
+            const btn = document.querySelector(`.lang-btn[data-lang="${lang}"]`);
+            if (btn) {
+                btn.click();
+            }
+        });
+    </script>
+</body>
+</html>
